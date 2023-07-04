@@ -13,6 +13,10 @@ def get_channel_id(url):
         else:
             channel_name = url
 
+    # If the channel name starts with '@', remove the '@' symbol
+    if channel_name.startswith('@'):
+        channel_name = channel_name[1:]
+
     # Call the YouTube Data API to search for the channel
     youtube = googleapiclient.discovery.build("youtube", "v3", developerKey="AIzaSyCJ14NIQl3MQgwayvg2vSyV5Pj0E9wj-Zk")
     request = youtube.search().list(
@@ -25,7 +29,6 @@ def get_channel_id(url):
 
     # Extract the channel ID from the search results
     if len(response['items']) == 1:
-        # print(response)
-        return response['items'][0]['id']['channelId']
+        return channel_name, response['items'][0]['id']['channelId']
     else:
-        return None
+        return None, None
