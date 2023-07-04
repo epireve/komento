@@ -19,7 +19,10 @@ def fetch_videos(channel_id):
         duration = video["lengthText"]["simpleText"]
         viewship = video["viewCountText"]["simpleText"].replace(",", "").split()[0]
         title = video["title"]["runs"][0]["text"]
-        description = video["descriptionSnippet"]["runs"][0]["text"]
+        try:
+            description = video["descriptionSnippet"]["runs"][0]["text"]
+        except KeyError:
+            description = "No description"
         created_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         data.append([channel_id, created_date, vid_id, publishedTimeText, duration, viewship, title, description])
         print(vid_id)
