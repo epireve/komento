@@ -1,5 +1,6 @@
 import pandas as pd
 import scrapetube
+import streamlit as st
 from datetime import datetime
 
 def fetch_videos(channel_id):
@@ -31,8 +32,13 @@ def fetch_videos(channel_id):
         print(row)
     df.to_csv('video_id.csv', index=False, mode='a')
 
+def display_video_id():
+    df = pd.read_csv('video_id.csv')
+    st.table(df)
+
 with open('urls.txt', 'r') as f:
     for line in f:
         status, url, channel_id = line.strip().split(',')
         if status == 'TRUE':
             fetch_videos(channel_id)
+    display_video_id()
