@@ -33,5 +33,6 @@ def fetch_videos(channel_id):
 
 with open('urls.txt', 'r') as f:
     for line in f:
-        channel_id = line.strip().split(',')[2]
-        fetch_videos(channel_id)
+        status, url, channel_id = line.strip().split(',')
+        if status == 'TRUE':
+            fetch_videos(channel_id)
