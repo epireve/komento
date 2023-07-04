@@ -4,12 +4,12 @@ import pandas as pd
 
 def save_url(channel_name, channel_id):
     with open('urls.txt', 'a') as f:
-        f.write(f"{channel_name},{channel_id}\n")
+        f.write(f"TRUE,{channel_name},{channel_id}\n")
 
 def display_urls():
     with open('urls.txt', 'r') as f:
         data = [line.strip().split(',') for line in f]
-    df = pd.DataFrame(data, columns=['URL', 'Channel ID'])
+    df = pd.DataFrame(data, columns=['status', 'URL', 'Channel ID'])
     st.table(df)
 
 st.title('YouTube Channel/Playlist Registration')
