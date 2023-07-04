@@ -1,2 +1,3 @@
 streamlit
-re
+google-api-python-client
+pandas
