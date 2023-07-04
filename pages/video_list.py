@@ -34,7 +34,14 @@ def fetch_videos(channel_id):
 
 def display_video_id():
     df = pd.read_csv('video_id.csv')
-    st.table(df)
+    st.write(f"Total videos: {df.shape[0]}")
+    
+    items_per_page = 10
+    n_pages = (len(df)-1) // items_per_page + 1
+    page_number = st.slider('Select a page:', 1, n_pages, 1)
+    start_index = items_per_page * (page_number - 1)
+    end_index = start_index + items_per_page
+    st.table(df.iloc[start_index:end_index])
 
 if st.button('Refresh video list'):
     with open('urls.txt', 'r') as f:
