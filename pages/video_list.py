@@ -42,4 +42,5 @@ if st.button('Refresh video list'):
             status, url, channel_id = line.strip().split(',')
             if status == 'TRUE':
                 fetch_videos(channel_id)
-    display_video_id()
+
+display_video_id()
