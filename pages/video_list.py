@@ -22,7 +22,7 @@ def fetch_videos(channel_id):
         try:
             description = video["descriptionSnippet"]["runs"][0]["text"]
         except KeyError:
-            description = "No description"
+            description = ""
         created_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         data.append([channel_id, created_date, vid_id, publishedTimeText, duration, viewship, title, description])
         print(vid_id)
