@@ -36,9 +36,10 @@ def display_video_id():
     df = pd.read_csv('video_id.csv')
     st.table(df)
 
-with open('urls.txt', 'r') as f:
-    for line in f:
-        status, url, channel_id = line.strip().split(',')
-        if status == 'TRUE':
-            fetch_videos(channel_id)
+if st.button('Refresh video list'):
+    with open('urls.txt', 'r') as f:
+        for line in f:
+            status, url, channel_id = line.strip().split(',')
+            if status == 'TRUE':
+                fetch_videos(channel_id)
     display_video_id()
